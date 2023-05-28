@@ -4,7 +4,7 @@
   height: 340px;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 10px;
   border: 1px solid black;
   background-color: white;
   top: 90px;
@@ -17,13 +17,28 @@
   }
 
   .cart-items {
-    height: 240px;
+    height: 250px;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow: auto;
   }
 
   button {
     margin-top: auto;
   }
+}
+
+/* For Chrome, Safari, and Opera */
+.cart-items::-webkit-scrollbar {
+  width: 8px; /* width of the entire scrollbar */
+}
+
+.cart-items::-webkit-scrollbar-track {
+  background: transparent; /* color of the tracking area */
+}
+
+.cart-items::-webkit-scrollbar-thumb {
+  background-color: darkgrey; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 3px solid transparent; /* creates padding around scroll thumb */
 }
