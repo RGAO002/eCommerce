@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import FormInput from "../form/form-input/form-input.component";
 import Button from "../button/button.componet";
+
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
@@ -33,9 +34,11 @@ function SignUpForm() {
     }
     try {
       const res = await createAuthUserWithEmailAndPassword(email, password);
-      console.log(res);
 
-      await createUserDocumentFromAuth(res.user, { displayName });
+      await createUserDocumentFromAuth(res.user, {
+        displayName,
+      });
+      // console.log(docRes);
       resetFormFields();
 
       // if (!user) return;
