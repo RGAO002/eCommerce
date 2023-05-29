@@ -9,7 +9,18 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth"; //Import the functions you need from the SDKs you need
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore"; //Import the functions you need from the SDKs you need
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+} from "firebase/firestore"; //Import the functions you need from the SDKs you need
+
 const firebaseConfig = {
   apiKey: "AIzaSyAH3T-0wwmHzEtB0iHE2kpLdEWD1LlMTog",
   authDomain: "ecommerce-ebc14.firebaseapp.com",
@@ -33,6 +44,41 @@ export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, provider); //Sign in with redirect
 
 export const db = getFirestore(); //Get the firestore service for the default app or a given app and export it
+
+export const addCollectionAndDocuments = async (
+  collecctionKey,
+  objectsToAdd
+) => {
+  //Add a collection and documents to the database
+  const collectionRef = collection(db, collecctionKey); //Get the collection reference
+  const batch = writeBatch(db); //Create a batch
+
+  objectsToAdd.forEach((object) => {
+    //Loop through the objects to add, in our case, each category of clothing
+    const newDocRef = doc(collectionRef, object.title.toLowerCase()); //Create a new document reference
+    batch.set(newDocRef, object); //Set the document reference
+  });
+  await batch.commit(); //Commit the batch
+  console.log("Collection added");
+};
+
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, "categories"); //Get the collection reference
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+  // console.log(querySnapshot);
+  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    // console.log(docSnapshot);
+    // console.log("data", docSnapshot.data());
+    const { title, items } = docSnapshot.data();
+
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+
+  return categoryMap;
+};
 
 export const createUserDocumentFromAuth = async (
   userAuth,
