@@ -5,7 +5,7 @@ const INITIAL_STATE = {
 };
 
 export const userReducer = (state = INITIAL_STATE, action) => {
-  console.log(state, action);
+  // console.log(state, action);
   const { type, payload } = action;
 
   switch (type) {
