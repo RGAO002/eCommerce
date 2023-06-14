@@ -3,12 +3,14 @@ import React, { useState, useContext } from "react";
 import FormInput from "../form/form-input/form-input.component";
 import Button from "../button/button.componet";
 
+import { useDispatch } from "react-redux";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 
 import "./sign-up-form.styles.scss";
+import { signUpStart } from "../../store/user/user.action";
 
 const defaultFormFields = {
   displayName: "",
@@ -17,6 +19,7 @@ const defaultFormFields = {
   confirmPassword: "",
 };
 function SignUpForm() {
+  const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
@@ -33,11 +36,12 @@ function SignUpForm() {
       return;
     }
     try {
-      const res = await createAuthUserWithEmailAndPassword(email, password);
+      dispatch(signUpStart(email, password, displayName));
+      /*       const res = await createAuthUserWithEmailAndPassword(email, password);
 
       await createUserDocumentFromAuth(res.user, {
         displayName,
-      });
+      }); */
       // console.log(docRes);
       resetFormFields();
 
