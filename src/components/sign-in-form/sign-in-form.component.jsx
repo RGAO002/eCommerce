@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import FormInput from "../form/form-input/form-input.component";
-import Button, { BUTTON_TYPE_CLASSES } from "../button/button.componet";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 // import {
 //   signInWithGooglePopup,
