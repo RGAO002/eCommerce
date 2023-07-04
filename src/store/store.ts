@@ -36,15 +36,6 @@ const middleWares = [
   sagaMiddleware,
 ].filter((middleware): middleware is Middleware => Boolean(middleware));
 
-enum Numbers {
-  One, // 0
-  Two, // 1
-  Three, // 2
-}
-console.log(Numbers.One); // Outputs: 0
-console.log(Numbers.Two); // Outputs: 1
-console.log(Numbers.Three); // Outputs: 2
-
 const composeEnhancer =
   (process.env.NODE_ENV !== "production" &&
     window &&

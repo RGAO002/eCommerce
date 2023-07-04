@@ -4,6 +4,9 @@ import {
   BackgroundImage,
   Body,
   DirectoryItemContainer,
+  ContentContainer,
+  ContentTitle,
+  ContentSubtitle,
 } from "./directory-item.styles";
 
 function DirectoryItem({ category }) {
@@ -14,10 +17,10 @@ function DirectoryItem({ category }) {
   return (
     <DirectoryItemContainer onClick={onNavigateHandler}>
       <BackgroundImage imageUrl={imageUrl} />
-      <Body>
-        <h2>{title}</h2>
-        <p>Shop Now</p>
-      </Body>
+      <ContentContainer>
+        <ContentTitle>{title}</ContentTitle>
+        <ContentSubtitle>Shop Now</ContentSubtitle>
+      </ContentContainer>
     </DirectoryItemContainer>
   );
 }
