@@ -17,7 +17,7 @@
     "dotenv": "^16.1.4",
     "express-sslify": "^1.2.0",
     "firebase": "^9.22.1",
-    "jest": "^27.5.1",
+    "node-fetch": "^2.6.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.7",
@@ -36,10 +36,13 @@
     "typescript": "^5.1.5",
     "web-vitals": "^2.1.4"
   },
+  "overrides": {
+    "typescript": "^5.1.5"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest",
+    "test": "jest --watch *.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -61,6 +64,9 @@
     ]
   },
   "devDependencies": {
-    "@types/redux-logger": "^3.0.9"
+    "@jest/transform": "^29.6.0",
+    "@types/redux-logger": "^3.0.9",
+    "jest": "^27.5.1",
+    "jest-environment-node": "^29.6.0"
   }
 }
